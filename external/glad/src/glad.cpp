@@ -51,23 +51,26 @@ static PFNWGLGETPROCADDRESSPROC_PRIVATE gladGetProcAddressPtr;
 #endif
 
 static
-int open_gl(void) {
-#ifndef IS_UWP
+int open_gl(void)
+{
+	#ifndef IS_UWP
     libGL = LoadLibraryW(L"opengl32.dll");
-    if(libGL != NULL) {
+    if(libGL != NULL) 
+	{
         void (* tmp)(void);
         tmp = (void(*)(void)) GetProcAddress(libGL, "wglGetProcAddress");
         gladGetProcAddressPtr = (PFNWGLGETPROCADDRESSPROC_PRIVATE) tmp;
         return gladGetProcAddressPtr != NULL;
     }
-#endif
-
+	#endif
     return 0;
 }
 
 static
-void close_gl(void) {
-    if(libGL != NULL) {
+void close_gl(void)
+{
+    if(libGL != NULL)
+	{
         FreeLibrary((HMODULE) libGL);
         libGL = NULL;
     }
@@ -82,7 +85,8 @@ static PFNGLXGETPROCADDRESSPROC_PRIVATE gladGetProcAddressPtr;
 #endif
 
 static
-int open_gl(void) {
+int open_gl(void)
+{
 #ifdef __APPLE__
     static const char *NAMES[] = {
         "../Frameworks/OpenGL.framework/OpenGL",
