@@ -157,7 +157,6 @@ int main(int argc, char** argv)
 	if (window == nullptr) 
 	{
 		glfwTerminate();
-		
 		std::cout << "Cannot create window." << std::endl;
 		return -1;
 	}
